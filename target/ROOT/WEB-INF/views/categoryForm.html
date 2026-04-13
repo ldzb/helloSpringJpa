@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>새 카테고리 등록 - Product Management</title>
+</head>
+<body>
+
+<h1>새 카테고리 등록</h1>
+<p><a th:href="@{/categories}">← 목록으로 돌아가기</a></p>
+<!-- categoryForm.html : th:object + th:field + th:errors 패턴 -->
+<form th:action="@{/categories/create}" th:object="${categoryForm}" method="post">
+  <!-- th:field가 name, id, value를 자동 설정 -->
+  <input type="text" th:field="*{name}" placeholder="카테고리 이름"/>
+  <!-- th:errors: BindingResult 오류(중복/공백) 메시지 자동 표시 -->
+  <span th:errors="*{name}" style="color:red"></span>
+  <button type="submit">등록</button>
+</form>
+
+</body>
+<div th:replace="~{footer :: studentInfo}"></div>
+</html>

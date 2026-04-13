@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>카테고리 관리 - Product Management</title>
+  <style>
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+  </style>
+</head>
+<body>
+
+<h1>카테고리 목록</h1>
+<!-- categoryList.html : 성공/오류 Flash 메시지 표시 -->
+<p th:if="${successMessage}" th:text="${successMessage}" style="color: green; font-weight: bold;"></p>
+<p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red; font-weight: bold;"></p>
+
+<p>
+  <a th:href="@{/products}">← 상품 목록으로 가기</a> |
+  <a th:href="@{/categories/create}">+ 새 카테고리 등록</a>
+</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>카테고리명</th>
+    <th>작업</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- th:each로 목록 반복, 삭제는 POST 폼으로 처리 -->
+  <tr th:each="cat : ${categories}">
+    <td th:text="${cat.id}"></td>
+    <td th:text="${cat.name}"></td>
+    <td>
+      <!-- th:action에서 경로 변수 (id=${cat.id}) 바인딩 방법 -->
+      <form th:action="@{/categories/{id}/delete(id=${cat.id})}" method="post">
+        <button type="submit">삭제</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+<div th:replace="~{footer :: studentInfo}"></div>
+</html>
