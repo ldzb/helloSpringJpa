@@ -1,0 +1,7 @@
+<footer th:fragment="studentInfo">
+  <hr/>
+  <div style="text-align: center; color: #555; margin-top: 20px; padding-bottom: 20px;">
+    <span th:text="${'실습 수행 일시: ' + #temporals.format(#temporals.createNow(), 'yyyy년 MM월 dd일 HH:mm:ss')}"></span>
+    <span> | 학번: 2371046 | 성명: 김병철</span>
+  </div>
+</footer>
