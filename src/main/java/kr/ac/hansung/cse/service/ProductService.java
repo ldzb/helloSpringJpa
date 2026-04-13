@@ -133,4 +133,15 @@ public class ProductService {
     public void deleteProduct(Long id) {
         productRepository.delete(id);
     }
+
+    // readOnly = true 상속: 검색은 읽기 전용 트랜잭션으로 충분
+    // 이름으로 검색
+    public List<Product> searchByName(String keyword) {
+        return productRepository.findByNameContaining(keyword);
+    }
+
+    // 카테고리로 검색
+    public List<Product> searchByCategory(Long categoryId) {
+        return productRepository.findByCategoryId(categoryId);
+    }
 }
